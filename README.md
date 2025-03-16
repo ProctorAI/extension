@@ -1,54 +1,67 @@
-# React + TypeScript + Vite
+# Chrome Extension: Exam Proctoring
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This Chrome extension is designed for exam proctoring by tracking user activity, including mouse movements and tab switches. The data is logged and uploaded to Supabase every 5 seconds to ensure monitoring integrity.
 
-Currently, two official plugins are available:
+## Features
+- Tracks mouse movements
+- Detects tab switches
+- Logs data every 5 seconds
+- Authenticates users via Supabase with username and password
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
+1. Clone this repository:
+   ```sh
+   git clone https://github.com/ProctorAI/extension.git
+   ```
+2. Navigate to the project folder:
+   ```sh
+   cd extension
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+4. Build the extension:
+   ```sh
+   npm run build
+   ```
+5. Open Chrome and navigate to `chrome://extensions/`.
+6. Enable **Developer mode** (toggle in the top-right corner).
+7. Click **Load unpacked** and select the `dist` folder inside the project.
+8. The extension is now installed and ready to use.
 
-## Expanding the ESLint configuration
+## Setup
+1. Create a Supabase project and configure authentication.
+2. Update the Supabase API URL and keys in the extension's config.
+3. Ensure Supabase has the necessary tables for storing logs.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Usage
+1. Click the extension icon and log in using your credentials.
+2. The extension will start tracking user activity in the background.
+3. Data will be sent to Supabase every 5 seconds.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Technologies Used
+- **React + Vite** for the frontend
+- **Supabase** for authentication and database
+- **Chrome Extension APIs** for tracking user interactions
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Contributing
+1. Fork the repository.
+2. Create a new branch:
+   ```sh
+   git checkout -b feature-name
+   ```
+3. Commit changes:
+   ```sh
+   git commit -m "Add new feature"
+   ```
+4. Push to your branch:
+   ```sh
+   git push origin feature-name
+   ```
+5. Submit a pull request.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## License
+This project is licensed under the MIT License.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
